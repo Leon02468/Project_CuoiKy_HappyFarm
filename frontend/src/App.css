@@ -1,0 +1,45 @@
+body{
+  margin: 0;
+  padding: 0;
+  overflow-y: hidden;
+}
+.Title{
+  height: 5rem;
+  background-image: url(../public/images/come_along_with_me.png);
+  background-position: top left;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+.Rain{
+  grid-area: rain;
+}
+.Sunny{
+  grid-area: sunny;
+}
+.Soil{
+  grid-area: soil;
+}
+.Water{
+  grid-area: water;
+}
+
+.Grid-Container{
+  height: 32.65rem;
+  display: grid;
+  grid-template-areas: 
+  'rain rain sunny sunny soil'
+  'rain rain sunny sunny water'
+  'rain rain sunny sunny water';
+  gap: 3px;
+  background-color: burlywood;
+  padding: 3px;
+}
+
+.Grid-Container > div {
+  background-color: rgba(255, 255, 255, 0.8);
+  text-align: center;
+  padding: 20px 0;
+  font-size: 30px;
+}
