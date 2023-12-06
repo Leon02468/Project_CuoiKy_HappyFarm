@@ -26,11 +26,14 @@ function App() {
         <div className="Rain">
           <h2>MƯA</h2>
         </div>
-        <div className="Sunny">
-          <h2>NẮNG</h2>
-        </div>
         <div className="Soil">
           <h2>ĐẤT</h2>
+          <div>
+            <div>
+              <img className='signal_light' src="..\images\green_light.png" alt="den_xanh"/>
+            </div>
+            <div></div>
+          </div>
         </div>
         <div className="Water">
           <h2>NƯỚC</h2>
@@ -52,6 +55,9 @@ function App() {
                   onClick={() => TurnOnOffWater()} >TURN ON WATER</button>
             }
           </div>
+        </div>
+        <div className="Manual">
+          <h2>CHẾ ĐỘ</h2>
         </div>
       </div>
     </div>

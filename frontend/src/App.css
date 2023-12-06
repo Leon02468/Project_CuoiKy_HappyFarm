@@ -24,14 +24,17 @@ body{
 .Water{
   grid-area: water;
 }
+.Manual{
+  grid-area: manual;
+}
 
 .Grid-Container{
   height: 32.65rem;
   display: grid;
   grid-template-areas: 
-  'rain rain sunny sunny soil'
-  'rain rain sunny sunny water'
-  'rain rain sunny sunny water';
+  'rain water soil'
+  'rain water soil'
+  'rain water manual';
   gap: 3px;
   background-color: burlywood;
   padding: 3px;
@@ -42,4 +45,10 @@ body{
   text-align: center;
   padding: 20px 0;
   font-size: 30px;
+}
+
+.signal_light{
+  border-radius: 5px;
+  height: 50px;
+  width: 50px;
 }
