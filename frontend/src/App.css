@@ -52,3 +52,25 @@ body{
   height: 50px;
   width: 50px;
 }
+
+.weather_sun {
+  height: 200px;
+  width: 200px;
+}
+
+p.sun{
+  color: #F1E700;
+  font-weight: bold;
+  font-size: 30px;
+}
+
+.weather_rainny {
+  height: 300px;
+  width: 300px;
+}
+
+p.rain{
+  color: #2562FF;
+  font-weight: bold;
+  font-size: 30px;
+}
