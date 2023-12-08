@@ -4,6 +4,7 @@ import axios from 'axios';
 
 function App() {
   const [waterStatus, setWaterStatus] = useState(false)
+  const [soilStatus, setSoilStatus] = useState(true)
   useEffect(() => {
     axios.get("http://192.168.1.77/")
       .then((response) => {
@@ -23,28 +24,43 @@ function App() {
         <h1>NÔNG TRẠI VUI VẺ</h1>
       </div>
       <div className="Grid-Container">
-        <div className="Rain">
+        <div className="Rain">{/*Le Kiet*/}
           <h2>MƯA</h2>
         </div>
-        <div className="Soil">
-          <h2>ĐẤT</h2>
-          <div>
-            <div>
-              <img className='signal_light' src="..\images\green_light.png" alt="den_xanh"/>
-            </div>
-            <div></div>
-          </div>
-        </div>
-        <div className="Water">
+        <div className="Water">{/*Dang Khoa*/}
           <h2>NƯỚC</h2>
           <div>
             {
               waterStatus ?
-                <img src="" alt="nuoc_dang_tuoi"></img>
+                <img className='signal_light' src="..\images\watering.gif" alt="nuoc_dang_tuoi"/>
                 :
-                <img src="" alt="nuoc_khong_tuoi"></img>
+                <img className='signal_light' src="..\images\water.png" alt="nuoc_khong_tuoi"/>
             }
           </div>
+        </div>
+        <div className="Soil">{/*Duc Minh*/}
+          <h2>ĐẤT</h2>
+          <div className='soil_signal'>
+            <div>
+              {
+                soilStatus ?
+                <img className='signal_light' src="..\images\green_light.png" alt="den_xanh"/>
+                :
+                <img className='signal_light_gray' src="..\images\green_light.png" alt="den_xanh"/>
+              }
+            </div>
+            <div>
+              {
+                soilStatus ?
+                <img className='signal_light_gray' src="..\images\red_light.png" alt="den_do"/>
+                :
+                <img className='signal_light' src="..\images\red_light.png" alt="den_do"/>
+              }
+            </div>
+          </div>
+        </div>
+        <div className="Mode">{/*Duc Minh*/}
+          <h2>CHẾ ĐỘ</h2>
           <div>
             {
               waterStatus ?
@@ -54,11 +70,20 @@ function App() {
                 <button type="button" className="btn btn-success mb-2"
                   onClick={() => TurnOnOffWater()} >TURN ON WATER</button>
             }
-            hello
           </div>
-        </div>
-        <div className="Manual">
-          <h2>CHẾ ĐỘ</h2>
+          <div>
+            {
+              // if(waterStatus){
+              //   <button type="button" className="btn btn-danger mb-2"
+              //     onClick={() => TurnOnOffWater()} >TURN OFF WATER</button>
+              // }
+              // else{
+              //   <button type="button" className="btn btn-danger mb-2"
+              //     onClick={() => TurnOnOffWater()} >TURN OFF WATER</button>
+              // }
+            }
+          </div>
+
         </div>
       </div>
     </div>
