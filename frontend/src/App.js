@@ -18,6 +18,21 @@ function App() {
     setWaterStatus(!waterStatus);
   }
 
+  const [weatherStatus, setWeatherStatus] = useState(true)
+  useEffect(() => {
+    axios.get("http://192.168.1.77/")
+      .then((response) => {
+        console.log("done")
+      })
+  }, [])
+  const InfoWeather = () => {
+    axios.get("http://192.168.1.77/turnOnOffWater").then((response) => {
+      console.log("done")
+    })
+    setWeatherStatus(!weatherStatus);
+  }
+  
+
   return (
     <div className="App">
       <div className="Title">
@@ -25,7 +40,23 @@ function App() {
       </div>
       <div className="Grid-Container">
         <div className="Rain">{/*Le Kiet*/}
-          <h2>MƯA</h2>
+          <h2>THỜI TIẾT</h2>
+          <div>
+            {
+              weatherStatus ?
+              <img className='weather_sun' src="..\images\sun.png" alt="den_xanh" />
+              :
+              <img className='weather_rainny' src="..\images\rainny.png" alt="den_xanh" />
+            }
+          </div>
+          <div>
+            {
+              weatherStatus ?
+              <p className='sun'>Sunny day</p>
+              :
+              <p className='rain'>It's raining outside!!</p>
+            }
+          </div>
         </div>
         <div className="Water">{/*Dang Khoa*/}
           <h2>NƯỚC</h2>
