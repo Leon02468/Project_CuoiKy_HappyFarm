@@ -24,6 +24,10 @@ body{
   grid-area: water;
   background-image: linear-gradient(180deg, rgb(162, 255, 255), rgb(100, 198, 237), rgb(0, 72, 255));
 }
+.Water2{
+  grid-area: water2;
+  background-image: linear-gradient(180deg, rgb(162, 255, 255), rgb(100, 198, 237), rgb(0, 72, 255));
+}
 .Mode{
   grid-area: mode;
 }
@@ -34,7 +38,7 @@ body{
   grid-template-areas:
   'rain water soil'
   'rain water mode'
-  'rain water mode';
+  'rain water2 mode';
   gap: 3px;
   padding: 3px;
   background-color: burlywood;
