@@ -4,7 +4,9 @@ import axios from 'axios';
 
 function App() {
   const [waterStatus, setWaterStatus] = useState(false)
-  const [soilStatus, setSoilStatus] = useState(true)
+  const [isWaterFull, setisWaterFull] = useState(false)
+
+  const [soilStatus] = useState(true)
   useEffect(() => {
     axios.get("http://192.168.1.77/")
       .then((response) => {
@@ -17,6 +19,13 @@ function App() {
     })
     setWaterStatus(!waterStatus);
   }
+
+  // const HandleBottle = () => {
+  //   axios.get("http://192.168.1.77/").then((response) => {
+  //     console.log("done")
+  //   })
+  //   setisWaterFull(!isWaterFull);
+  // }
 
   const [weatherStatus, setWeatherStatus] = useState(true)
   useEffect(() => {
@@ -31,7 +40,7 @@ function App() {
     })
     setWeatherStatus(!weatherStatus);
   }
-  
+
 
   return (
     <div className="App">
@@ -44,17 +53,17 @@ function App() {
           <div>
             {
               weatherStatus ?
-              <img className='weather_sun' src="..\images\sun.png" alt="den_xanh" />
-              :
-              <img className='weather_rainny' src="..\images\rainny.png" alt="den_xanh" />
+                <img className='weather_sun' src="..\images\sun.png" alt="den_xanh" />
+                :
+                <img className='weather_rainny' src="..\images\rainny.png" alt="den_xanh" />
             }
           </div>
           <div>
             {
               weatherStatus ?
-              <p className='sun'>Sunny day</p>
-              :
-              <p className='rain'>It's raining outside!!</p>
+                <p className='sun'>Sunny day</p>
+                :
+                <p className='rain'>It's raining outside!!</p>
             }
           </div>
         </div>
@@ -63,9 +72,31 @@ function App() {
           <div>
             {
               waterStatus ?
-                <img className='signal_light' src="..\images\watering.gif" alt="nuoc_dang_tuoi"/>
+                <>
+                  <img className='signal_light' src="..\images\watering.gif" alt="nuoc_dang_tuoi" />
+                  <h4>Đang tưới nước</h4>
+                </>
                 :
-                <img className='signal_light' src="..\images\water.png" alt="nuoc_khong_tuoi"/>
+                <>
+                  <img className='signal_light' src="..\images\water.png" alt="nuoc_khong_tuoi" />
+                </>
+            }
+          </div>
+        </div>
+        <div className="Water2">{/*Dang Khoa*/}
+          <h2>Trạng thái bình nước</h2>
+          <div>
+            {
+              isWaterFull ?
+                <>
+                  <img className='signal_light' src="..\images\tap.gif" alt="nuoc_dang_tuoi" />
+                  <h4>Cần thêm nước vào bình chứa</h4>
+                </>
+                :
+                <>
+                  <img className='signal_light' src="..\images\tablet.gif" alt="nuoc_khong_tuoi" />
+                  <h4>Nước đã đầy</h4>
+                </>
             }
           </div>
         </div>
@@ -75,17 +106,17 @@ function App() {
             <div>
               {
                 soilStatus ?
-                <img className='signal_light' src="..\images\green_light.png" alt="den_xanh"/>
-                :
-                <img className='signal_light_gray' src="..\images\green_light.png" alt="den_xanh"/>
+                  <img className='signal_light' src="..\images\green_light.png" alt="den_xanh" />
+                  :
+                  <img className='signal_light_gray' src="..\images\green_light.png" alt="den_xanh" />
               }
             </div>
             <div>
               {
                 soilStatus ?
-                <img className='signal_light_gray' src="..\images\red_light.png" alt="den_do"/>
-                :
-                <img className='signal_light' src="..\images\red_light.png" alt="den_do"/>
+                  <img className='signal_light_gray' src="..\images\red_light.png" alt="den_do" />
+                  :
+                  <img className='signal_light' src="..\images\red_light.png" alt="den_do" />
               }
             </div>
           </div>
