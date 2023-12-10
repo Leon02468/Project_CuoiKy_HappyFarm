@@ -20,41 +20,88 @@ body{
   color: white;
   grid-area: weather;
   background-image: linear-gradient(180deg, rgb(100, 198, 237), rgb(162, 255, 255), rgb(100, 198, 237),rgb(0, 72, 255));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 .weather-rainny{
   color: rgb(140, 125, 238);
   grid-area: weather;
   background-image: linear-gradient(180deg, rgb(38, 87, 106), rgb(48, 120, 120), rgb(38, 87, 106),rgb(57, 67, 92));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
 }
 .weather{
-  height: 250px;
-  width: 250px;
+  margin-top: 3rem;
+  height: 200px;
+  width: 200px;
 }
 .weather-sunny p{
   color: #F1E700;
   font-weight: bold;
   font-size: 30px;
+  width: 10rem;
 }
 .weather-rainny p{
   color: rgb(91, 135, 223);
   font-weight: bold;
   font-size: 30px;
+  width: 10rem;
 }
 
 .soil{
   grid-area: soil;
   color: white;
-  background-color: rgb(122, 90, 74);
+  background-image: linear-gradient(180deg, rgb(124, 105, 61), rgb(98, 88, 64), rgb(51, 46, 33));
 }
 
 .watering{
   grid-area: watering;
-  background-color: beige;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.watering-status{
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-end;
+  width: 225px;
+  height: 125px;
+}
+.watering-status-hose{
+  width: 125px;
+  height: 125px;
+}
+.flower{
+  width: 100px;
+  height: 100px;
 }
 
 .water-status{
   grid-area: water-status;
-  background-image: linear-gradient(180deg, rgb(162, 255, 255), rgb(100, 198, 237), rgb(0, 72, 255));
+  background-image: linear-gradient(180deg, rgb(185, 253, 253), rgb(162, 255, 255), rgb(143, 223, 255), rgb(100, 198, 237), rgb(0, 72, 255));
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+.water-status h2{
+  color: rgb(0, 29, 159);
+  margin-bottom: 2rem;
+}
+.water-status h4{
+  color: rgb(255, 255, 255);
+  width: 15rem;
+}
+.water-status-gif{
+  width: 125px;
+  height: 125px;
+  border-radius: 50%;
 }
 
 .mode{
@@ -96,4 +143,15 @@ body{
   height: 70px;
   width: 70px;
   filter: grayscale(70%);
+}
+
+.mode-status{
+  color: #686868;
+  margin-top: 2rem;
+  border: ridge 10px #e3e3e3;
+  background-color: rgb(255, 255, 255);
+}
+
+.btn{
+  width: 10rem;
 }

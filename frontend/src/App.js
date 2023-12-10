@@ -6,20 +6,18 @@ function App() {
   const [watering, setWatering] = useState(false)
   const [waterStatus] = useState(false)
   const [soilStatus] = useState(true)
-  const [weatherStatus] = useState(true)
+  const [weatherStatus] = useState(false)
   const [mode, setMode] = useState(true)
 
-  useEffect(() => {
-    axios.get("http://192.168.1.77/")
-      .then((response) => {
-        console.log("done")
-      })
-  }, [])
   const TurnOnOffWater = () => {
     axios.get("http://192.168.1.77/turnOnOffWater").then((response) => {
       console.log("done")
     })
     setWatering(!watering);
+  }
+
+  const ChangeMode = () => {
+    setMode(!mode);
   }
 
   useEffect(() => {
@@ -35,7 +33,6 @@ function App() {
         <h1>NÔNG TRẠI VUI VẺ</h1>
       </div>
       <div className="Grid-Container">
-        {/*Le Kiet*/}
         {
           weatherStatus?
           <div className='weather-rainny'>
@@ -50,39 +47,42 @@ function App() {
             <p className='sun'>Sunny day</p>
           </div>
         }
-        <div className="watering">{/*Dang Khoa*/}
+        <div className="watering">
           <h2>NƯỚC</h2>
-          <div>
+          <div className='watering-status'>
             {
               watering ?
-                <>
-                  <img className='signal-light' src="..\images\watering.gif" alt="nuoc_dang_tuoi"/>
-                </>
+                <div>
+                  <img className='watering-status-hose' src="..\images\watering.gif" alt="nuoc_dang_tuoi"/>
+                </div>
                 :
-                <>
-                  <img className='signal-light' src="..\images\water.png" alt="nuoc_khong_tuoi" />
-                </>
+                <div>
+                  <img className='watering-status-hose' src="..\images\water.png" alt="nuoc_khong_tuoi" />
+                </div>
             }
+            <div>
+              <img className='flower' src="..\images\flower.gif" alt="bong_hoa"/>
+            </div>
           </div>
         </div>
-        <div className="water-status">{/*Dang Khoa*/}
+        <div className="water-status">
           <h2>BÌNH NƯỚC</h2>
           <div>
             {
               waterStatus ?
                 <>
-                  <img className='signal-light' src="..\images\water_empty.gif" alt="nuoc_dang_tuoi" />
-                  <h4>Cần thêm nước vào bình chứa</h4>
+                  <img className='water-status-gif' src="..\images\water_empty.gif" alt="nuoc_day" />
+                  <h4>Cần thêm nước</h4>
                 </>
                 :
                 <>
-                  <img className='signal-light' src="..\images\water_full.gif" alt="nuoc_khong_tuoi" />
-                  <h4>Nước đã đầy</h4>
+                  <img className='water-status-gif' src="..\images\water_full.gif" alt="nuoc_thieu" />
+                  <h4>Vẫn còn nước</h4>
                 </>
             }
           </div>
         </div>
-        <div className="soil">{/*Duc Minh*/}
+        <div className="soil">
           <h2>ĐẤT</h2>
           <div className='soil-signal'>
             <div>
@@ -103,7 +103,7 @@ function App() {
             </div>
           </div>
         </div>
-        <div className="mode">{/*Duc Minh*/}
+        <div className="mode">
           <h2>CHẾ ĐỘ</h2>
           <div>
             {
@@ -115,15 +115,17 @@ function App() {
                   onClick={() => TurnOnOffWater()} >TURN ON WATER</button>
             }
           </div>
-          <button type="button" className="btn btn-dark">CHANGE MODE</button>
-          <div>
+          <div className='mode-status'>
             {
-              weatherStatus ?
-                <label>AUTO</label>
+              mode ?
+                <h3>AUTO</h3>
                 :
-                <label>MANUAL</label>
+                <h3>MANUAL</h3>
             }
           </div>
+          <button type="button" className="btn btn-dark"
+           onClick={() => ChangeMode()}>CHANGE MODE</button>
+          
 
         </div>
       </div>
