@@ -3,8 +3,12 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 function App() {
-  const [waterStatus, setWaterStatus] = useState(false)
-  const [soilStatus, setSoilStatus] = useState(true)
+  const [watering, setWatering] = useState(false)
+  const [waterStatus] = useState(false)
+  const [soilStatus] = useState(true)
+  const [weatherStatus] = useState(true)
+  const [mode, setMode] = useState(true)
+
   useEffect(() => {
     axios.get("http://192.168.1.77/")
       .then((response) => {
@@ -15,23 +19,15 @@ function App() {
     axios.get("http://192.168.1.77/turnOnOffWater").then((response) => {
       console.log("done")
     })
-    setWaterStatus(!waterStatus);
+    setWatering(!watering);
   }
 
-  const [weatherStatus, setWeatherStatus] = useState(true)
   useEffect(() => {
     axios.get("http://192.168.1.77/")
       .then((response) => {
         console.log("done")
       })
   }, [])
-  const InfoWeather = () => {
-    axios.get("http://192.168.1.77/turnOnOffWater").then((response) => {
-      console.log("done")
-    })
-    setWeatherStatus(!weatherStatus);
-  }
-  
 
   return (
     <div className="App">
@@ -39,62 +35,79 @@ function App() {
         <h1>NÔNG TRẠI VUI VẺ</h1>
       </div>
       <div className="Grid-Container">
-        <div className="Rain">{/*Le Kiet*/}
-          <h2>THỜI TIẾT</h2>
-          <div>
-            {
-              weatherStatus ?
-              <img className='weather_sun' src="..\images\sun.png" alt="den_xanh" />
-              :
-              <img className='weather_rainny' src="..\images\rainny.png" alt="den_xanh" />
-            }
+        {/*Le Kiet*/}
+        {
+          weatherStatus?
+          <div className='weather-rainny'>
+            <h2>THỜI TIẾT</h2>
+            <img className='weather' src="..\images\rainny.png" alt="den_xanh" />
+            <p className='rain'>It's raining</p>
           </div>
-          <div>
-            {
-              weatherStatus ?
-              <p className='sun'>Sunny day</p>
-              :
-              <p className='rain'>It's raining outside!!</p>
-            }
+          :
+          <div className='weather-sunny'>
+            <h2>THỜI TIẾT</h2>
+            <img className='weather' src="..\images\sun.png" alt="den_xanh" />
+            <p className='sun'>Sunny day</p>
           </div>
-        </div>
-        <div className="Water">{/*Dang Khoa*/}
+        }
+        <div className="watering">{/*Dang Khoa*/}
           <h2>NƯỚC</h2>
           <div>
             {
-              waterStatus ?
-                <img className='signal_light' src="..\images\watering.gif" alt="nuoc_dang_tuoi"/>
+              watering ?
+                <>
+                  <img className='signal-light' src="..\images\watering.gif" alt="nuoc_dang_tuoi"/>
+                </>
                 :
-                <img className='signal_light' src="..\images\water.png" alt="nuoc_khong_tuoi"/>
+                <>
+                  <img className='signal-light' src="..\images\water.png" alt="nuoc_khong_tuoi" />
+                </>
             }
           </div>
         </div>
-        <div className="Soil">{/*Duc Minh*/}
+        <div className="water-status">{/*Dang Khoa*/}
+          <h2>BÌNH NƯỚC</h2>
+          <div>
+            {
+              waterStatus ?
+                <>
+                  <img className='signal-light' src="..\images\water_empty.gif" alt="nuoc_dang_tuoi" />
+                  <h4>Cần thêm nước vào bình chứa</h4>
+                </>
+                :
+                <>
+                  <img className='signal-light' src="..\images\water_full.gif" alt="nuoc_khong_tuoi" />
+                  <h4>Nước đã đầy</h4>
+                </>
+            }
+          </div>
+        </div>
+        <div className="soil">{/*Duc Minh*/}
           <h2>ĐẤT</h2>
-          <div className='soil_signal'>
+          <div className='soil-signal'>
             <div>
               {
                 soilStatus ?
-                <img className='signal_light' src="..\images\green_light.png" alt="den_xanh"/>
-                :
-                <img className='signal_light_gray' src="..\images\green_light.png" alt="den_xanh"/>
+                  <img className='signal-light' src="..\images\green_light.png" alt="den_xanh" />
+                  :
+                  <img className='signal-light-gray' src="..\images\green_light.png" alt="den_xanh" />
               }
             </div>
             <div>
               {
                 soilStatus ?
-                <img className='signal_light_gray' src="..\images\red_light.png" alt="den_do"/>
-                :
-                <img className='signal_light' src="..\images\red_light.png" alt="den_do"/>
+                  <img className='signal-light-gray' src="..\images\red_light.png" alt="den_do" />
+                  :
+                  <img className='signal-light' src="..\images\red_light.png" alt="den_do" />
               }
             </div>
           </div>
         </div>
-        <div className="Mode">{/*Duc Minh*/}
+        <div className="mode">{/*Duc Minh*/}
           <h2>CHẾ ĐỘ</h2>
           <div>
             {
-              waterStatus ?
+              watering ?
                 <button type="button" className="btn btn-danger mb-2"
                   onClick={() => TurnOnOffWater()} >TURN OFF WATER</button>
                 :
@@ -102,16 +115,13 @@ function App() {
                   onClick={() => TurnOnOffWater()} >TURN ON WATER</button>
             }
           </div>
+          <button type="button" className="btn btn-dark">CHANGE MODE</button>
           <div>
             {
-              // if(waterStatus){
-              //   <button type="button" className="btn btn-danger mb-2"
-              //     onClick={() => TurnOnOffWater()} >TURN OFF WATER</button>
-              // }
-              // else{
-              //   <button type="button" className="btn btn-danger mb-2"
-              //     onClick={() => TurnOnOffWater()} >TURN OFF WATER</button>
-              // }
+              weatherStatus ?
+                <label>AUTO</label>
+                :
+                <label>MANUAL</label>
             }
           </div>
 
